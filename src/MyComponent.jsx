@@ -8,11 +8,19 @@ function MyComponent() {
 
   function handleAddCar() {
     const newCar = { year: carYear, make: carMake, model: carModel };
-    if (newCar.make === "" && newCar.model === "") {
+    if (newCar.make === "" && newCar.model === ""&&(newCar.year>new Date().getFullYear()||newCar.year<1886)) {
       document.getElementById("car-model").style.backgroundColor =
         "hsl(0,0%,80%)";
       document.getElementById("car-make").style.backgroundColor =
         "hsl(0,0%,80%)";
+    }
+    if (newCar.year>new Date().getFullYear()||newCar.year<1886) {
+      document.getElementById("car-year").style.backgroundColor =
+        "hsl(0,0%,80%)";
+      return;
+    }else{
+        document.getElementById("car-year").style.backgroundColor =
+      "hsla(0, 0%, 100%, 1.00)";
     }
     if (newCar.model === "") {
       document.getElementById("car-model").style.backgroundColor =
@@ -64,6 +72,7 @@ function MyComponent() {
         <input
           type="number"
           value={carYear}
+          id="car-year"
           onChange={(e) => setCarYear(e.target.value)}
           className="input"
         />
